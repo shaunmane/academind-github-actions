@@ -15,15 +15,17 @@ jobs:
               with:
                 node-version: 18
 
+            - name: Lint action
+              uses: wearerequired/lint-action@v2.3.0
+              with:
+                eslint: true
+                prettier: true
+
             - name: Install dependencies
               run: |
                 cd 04\ Practice\ Project\ \(Start\)  && npm install
  
-            - name: Run linters
-              uses: wearerequired/lint-action@v2
-              with:
-                eslint: true
-
+            
             - name: Run tests
               run: |
                 cd 04\ Practice\ Project\ \(Start\) && npm test
