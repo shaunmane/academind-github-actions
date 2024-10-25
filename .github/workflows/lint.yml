@@ -17,14 +17,17 @@ jobs:
 
             - name: Install dependencies
               run: |
-                cd 04\ Practice\ Project\ \(Start\)  && npm install
+                cd 04\ Practice\ Project\ \(Start\) && npm install
             
-            - name: Lint action
-              uses: wearerequired/lint-action@v2.3.0
-              with:
-                eslint@9.13.0: true
-                prettier: true
-                
+            - name: Run linter
+              run: |
+                cd 04\ Practice\ Project\ \(Start\) && npm run lint     
+            #- name: Lint action
+            #  uses: wearerequired/lint-action@v2.3.0
+            #  with:
+            #    eslint: true
+            #    prettier: true
+
             - name: Run tests
               run: |
                 cd 04\ Practice\ Project\ \(Start\) && npm test
