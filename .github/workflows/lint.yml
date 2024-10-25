@@ -1,0 +1,34 @@
+name: Linting Workflow
+
+on: push
+
+jobs:
+    run-linting:
+        runs-on: ubuntu-latest
+
+        steps: 
+            - name:  Get code
+              uses: actions/checkout@v4
+
+            - name: Install NodeJS
+              uses: actions/setup-node@v4.1.0
+              with:
+                node-version: 18
+
+            - name: Install dependencies
+              run: |
+                cd 04\ Practice\ Project\ \(Start\)  && npm install
+ 
+            - name: Run linters
+              uses: wearerequired/lint-action@v2
+              with:
+                eslint: true
+
+            - name: Run tests
+              run: |
+                cd 04\ Practice\ Project\ \(Start\) && npm test
+
+            - name: Run build
+              run: |
+                cd 04\ Practice\ Project\ \(Start\) && npm build
+
