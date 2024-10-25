@@ -34,5 +34,5 @@ jobs:
 
             - name: Run build
               run: |
-                cd 04\ Practice\ Project\ \(Start\) && npm build
+                cd 04\ Practice\ Project\ \(Start\) && npm run build
 
