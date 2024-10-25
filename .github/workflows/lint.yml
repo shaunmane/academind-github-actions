@@ -22,11 +22,6 @@ jobs:
             - name: Run linter
               run: |
                 cd 04\ Practice\ Project\ \(Start\) && npm run lint     
-            #- name: Lint action
-            #  uses: wearerequired/lint-action@v2.3.0
-            #  with:
-            #    eslint: true
-            #    prettier: true
 
             - name: Run tests
               run: |
@@ -35,4 +30,7 @@ jobs:
             - name: Run build
               run: |
                 cd 04\ Practice\ Project\ \(Start\) && npm run build
+
+            - name: Deploy code
+              run: echo "Deploying..."
 

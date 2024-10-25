@@ -1,8 +1,6 @@
 name: Output information
 
-on:
-    issues:
-      types: [opened, edited, milestoned]
+on: issues
 
 jobs:
     info:
