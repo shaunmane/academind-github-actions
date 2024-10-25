@@ -8,4 +8,4 @@ jobs:
 
         steps:
           - name: Output Github context
-            run: echo "${{ toJSON(github) }}" 
+            run: echo "${{ toJSON(github.event) }}" 
