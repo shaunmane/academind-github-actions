@@ -1,0 +1,43 @@
+name: Events Demo 1
+
+on: 
+  pull_request:
+    types:
+      - opened
+  
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main          # main
+      - 'gh-*'        # dev-new or # dev-this-is-new    # all branches that start with "gh-" and any other characters
+      - 'feat/**'     # feat/new or feat/new/button     # is a recursive wildcard which can only be used with paths, not file names.
+   # paths-ignore:
+   #   - '.github/workflows/*'     # ignores changes in this one path/file
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Output event data
+        run: echo "${{ toJSON(github.event) }}"
+            
+      - name: Get code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          cd 03\ Events/01\ Starting\ Project && npm ci
+
+      - name: Test code
+        run: |
+          cd 03\ Events/01\ Starting\ Project && npm run test
+
+      - name: Build code
+        run: |
+          cd 03\ Events/01\ Starting\ Project &&
+          npm run build
+
+      - name: Deploy porject
+        run: echo "Deploying..."
