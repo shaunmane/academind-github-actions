@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install dependencies
         run: |
           cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project 
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install dependencies
         run: |
           cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
@@ -37,7 +37,7 @@ jobs:
           cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
           npm run build
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist-files
           path: 04\ Artifacts\ \&\ Outputs/02\ Extra\ Files
