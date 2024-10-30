@@ -12,15 +12,15 @@ jobs:
         uses: actions/checkout@v3
       - name: Install dependencies
         run: |
-          cd /workspaces/second-action-react-demo/04\ Artifacts\ \&\ Outputs/01\ Starting\ Project 
+          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project 
           npm ci
       - name: Lint code
         run: |
-          cd /workspaces/second-action-react-demo/04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
+          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
           npm run lint
       - name: Test code
         run: |
-          cd /workspaces/second-action-react-demo/04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
+          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
           npm run test
   build:
     needs: test
@@ -30,17 +30,17 @@ jobs:
         uses: actions/checkout@v3
       - name: Install dependencies
         run: |
-          cd /workspaces/second-action-react-demo/04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
+          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
           npm ci
       - name: Build website
         run: |
-          cd /workspaces/second-action-react-demo/04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
+          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
           npm run build
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: dist-files
-          path: /workspaces/second-action-react-demo/04\ Artifacts\ \&\ Outputs/02\ Extra\ Files
+          path: 04\ Artifacts\ \&\ Outputs/02\ Extra\ Files
           #  path: |
           #    dist
           #   package.json
