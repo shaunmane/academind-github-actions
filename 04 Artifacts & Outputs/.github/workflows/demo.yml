@@ -17,15 +17,15 @@ jobs:
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: |
-          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project                 # move to project file
+          cd 04\ Artifacts\ \&\ Outputs/Project                 # move to project file
           npm ci
       - name: Lint code
         run: |
-          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
+          cd 04\ Artifacts\ \&\ Outputs/Project
           npm run lint
       - name: Test code
         run: |
-          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
+          cd 04\ Artifacts\ \&\ Outputs/Project
           npm run test
   
   build:
@@ -43,22 +43,22 @@ jobs:
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: |
-          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
+          cd 04\ Artifacts\ \&\ Outputs/Project
           npm ci
       - name: Build website
         run: |
-          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
+          cd 04\ Artifacts\ \&\ Outputs/Project
           npm run build
       - name: Publish JS filename
         id: publish
         run: |
-          cd 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project
+          cd 04\ Artifacts\ \&\ Outputs/Project
           find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
       - name: Upload artifacts                                            # to upload files onto the github cli
         uses: actions/upload-artifact@v4
         with:
           name: dist-files                                                # identifier/name of the file once uploaded
-          path: 04\ Artifacts\ \&\ Outputs/01\ Starting\ Project          # file path 
+          path: 04\ Artifacts\ \&\ Outputs/Project          # file path 
           #  path: |
           #    dist
           #   package.json
