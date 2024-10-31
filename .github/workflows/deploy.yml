@@ -11,11 +11,11 @@ env:
 
 jobs:
   test:
-    #environment: testing
+    #environment: testing                                                         # for secrets in a specific environment
     env: 
       MONGODB_CLUSTER_ADDRESS: cluster0.15pwqcc.mongodb.net                       # external db domain 
-      MONGODB_USERNAME: maxmilian
-      MONGODB_PASSWORD: X34Mqtpg10D8RGTi
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}                           # stored under github directory secrets
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
     runs-on: ubuntu-latest
     steps:
