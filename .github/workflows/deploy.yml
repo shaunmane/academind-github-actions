@@ -30,7 +30,9 @@ jobs:
         run: |
           cd 05\ Environment\ Variables\ \&\ Secrets/Project && npm ci
       - name: Run server
-        run: npm start & npx wait-on http://127.0.0.1:$PORT
+        run: |
+          cd 05\ Environment\ Variables\ \&\ Secrets/Project
+          npm start & npx wait-on http://127.0.0.1:$PORT
       - name: Run tests
         run: |
           cd 05\ Environment\ Variables\ \&\ Secrets/Project && npm test
