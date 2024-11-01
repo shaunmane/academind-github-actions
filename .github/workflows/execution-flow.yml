@@ -19,7 +19,7 @@ jobs:
         key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
     #
     - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
+      # if: steps.cache.outputs.cache-hit != 'true'
       run: |
         cd "06 Execution Flow/Project" && npm ci                         # It's generally a good idea to quote paths with spaces to avoid potential issues with parsing
       
@@ -41,7 +41,7 @@ jobs:
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
+        #if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
         run: | 
           cd "06 Execution Flow/Project" && npm ci
 
