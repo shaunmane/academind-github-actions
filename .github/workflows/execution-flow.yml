@@ -17,6 +17,7 @@ jobs:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           cd 06\ Execution\ Flow/Project && npm ci
       - name: Lint code
@@ -35,6 +36,7 @@ jobs:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
         run: | 
           cd 06\ Execution\ Flow/Project && npm ci
       - name: Test code
@@ -76,7 +78,7 @@ jobs:
           path: dist
 
   deploy:
-    needs: build
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - name: Get build artifacts
@@ -87,3 +89,12 @@ jobs:
         run: ls
       - name: Deploy
         run: echo "Deploying..."
+
+  report:
+    needs: [ lint, deploy ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information
+        run: |
+          echo "Something went wrong"
+          echo "${{ toJSON(github) }}"
