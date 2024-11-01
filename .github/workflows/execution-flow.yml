@@ -83,6 +83,7 @@ jobs:
         id: build-website
         run: |
           cd "06 Execution Flow/Project" && npm run build
+          npm list --depth=0 
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
