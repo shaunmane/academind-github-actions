@@ -77,16 +77,12 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}-v2
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
         run: |
           cd "06 Execution Flow/Project" && npm ci
-
-      - name: List node_modules
-        run: |
-          cd "06 Execution Flow/Project" && ls -la 
 
       - name: Build website
         id: build-website
