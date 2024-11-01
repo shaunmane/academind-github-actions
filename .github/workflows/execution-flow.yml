@@ -22,8 +22,7 @@ jobs:
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        cd "06 Execution Flow/Project" && npm ci                        
-        npm list --depth=0           
+        cd "06 Execution Flow/Project" && npm ci                                   
 
     - name: Lint code
       run: | 
@@ -45,7 +44,8 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
         run: | 
-          cd "06 Execution Flow/Project" && npm ci
+          cd "06 Execution Flow/Project" && npm install
+          npm list --depth=0
 
       - name: Test code
         id: run-tests
@@ -83,6 +83,10 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
         run: |
           cd "06 Execution Flow/Project" && npm ci
+
+      - name: List node_modules
+        run: |
+          cd "06 Execution Flow/Project" && ls -la node_modules
 
       - name: Build website
         id: build-website
