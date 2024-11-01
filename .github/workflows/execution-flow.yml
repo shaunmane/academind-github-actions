@@ -16,7 +16,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ~/.npm
-        key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}
+        key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}-v2
     
     # It's generally a good idea to quote paths with spaces to avoid potential issues with parsing
     - name: Install dependencies
@@ -39,7 +39,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}-v2
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
