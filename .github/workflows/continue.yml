@@ -2,7 +2,7 @@ name: Continue-on-error Website Deployment
 
 on:
   push:
-    branches: [ gh-exec-flow ]
+    branches: [ main ]
 
 jobs:
   lint:
