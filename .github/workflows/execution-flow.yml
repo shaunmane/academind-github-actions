@@ -86,7 +86,7 @@ jobs:
 
       - name: List node_modules
         run: |
-          cd "06 Execution Flow/Project" && ls -la node_modules
+          cd "06 Execution Flow/Project" && ls -la 
 
       - name: Build website
         id: build-website
