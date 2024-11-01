@@ -43,7 +43,7 @@ jobs:
           cd 06\ Execution\ Flow/Project && npm run test
       # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#steps-context
       - name: Upload test report
-        if: failue() && steps.run-tests.outcome == 'failure'
+        if: failure() && steps.run-tests.outcome == 'failure'
         uses: actions/upload-artifact@v4
         with:
           name: test-report
