@@ -39,7 +39,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}-v2
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}-v3
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
@@ -77,7 +77,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}-v2
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}-v4
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
