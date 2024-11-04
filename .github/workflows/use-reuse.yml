@@ -1,0 +1,105 @@
+name: Using Reusable Workflow 
+
+on:
+  push:
+    branches: [ gh-exec-flow ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get code
+      uses: actions/checkout@v3
+      
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}
+    
+    # It's generally a good idea to quote paths with spaces to avoid potential issues with parsing
+    - name: Install dependencies
+      #if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        cd "06 Execution Flow/Project" && npm ci                                   
+
+    - name: Lint code
+      run: | 
+        cd "06 Execution Flow/Project" && npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}
+
+      - name: Install dependencies
+        #if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
+        run: | 
+          cd "06 Execution Flow/Project" && npm install
+
+      - name: Test code
+        id: run-tests
+        run: |
+          cd "06 Execution Flow/Project" && npm run test
+
+      # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#steps-context
+      - name: Upload test report
+        if: failure() && steps.run-tests.outcome == 'failure'
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: test.json
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json', '**/package.json') }}
+
+      - name: Install dependencies
+        #if: steps.cache.outputs.cache-hit != 'true'                      # checks if cache dependencies exist, skips if they do
+        run: |
+          cd "06 Execution Flow/Project" && npm ci
+
+      - name: Build website
+        id: build-website
+        run: |
+          cd "06 Execution Flow/Project" && npm run build
+          npm list --depth=0 
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files
+          path: 06\ Execution\ Flow/Project/dist
+
+  deploy:
+    needs: [ build ]
+    uses: ./.github/workflows/reusable.yml
+
+  report:
+    needs: [ lint, deploy ]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output information
+        run: |
+          echo "Something went wrong"
+          echo "${{ toJSON(github) }}"
