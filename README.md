@@ -26,3 +26,9 @@ This repository contains practical exercises and workflows based on the lessons 
 - **[07 Containers](./07%20Containers/)**
 - **[08 Custom Actions](./08%20Custom%20Actions/)**
 - **[09 Security](./09%20Security/)**
+
+## MIT License
+
+![License](https://img.shields.io/badge/license-MIT-green)
+
+**[MIT License](./LICENSE)**
