@@ -30,5 +30,3 @@ This repository contains practical exercises and workflows based on the lessons 
 ## MIT License
 
 ![License](https://img.shields.io/badge/license-MIT-green)
-
-**[MIT License](./LICENSE)**
