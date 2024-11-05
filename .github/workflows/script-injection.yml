@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Assign label
+      # storing the event issue title in an env seperates it from the shell
         env:
           TITLE: ${{ github.event.issue.title }}
         run: |
